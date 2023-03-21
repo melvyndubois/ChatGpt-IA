@@ -1,0 +1,108 @@
+/* Navbar.css */
+
+.custom-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #222;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container-Navbar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-navbar-brand {
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.custom-navbar-links {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+
+.custom-nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.custom-nav-link:hover {
+  background-color: #444;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggler {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 0.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.nav-toggler span {
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .custom-navbar-links {
+    display: none;
+  }
+
+  .nav-toggle:checked ~ .custom-navbar-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-toggler {
+    display: block;
+  }
+}
+
+.register-btn {
+  background-color: #f26c4f;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #f68471;
+}
+
+.login-btn {
+  background-color: #f26c4f;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #f68471;
+}
