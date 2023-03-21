@@ -20,9 +20,6 @@ const Login = ({ setUser }) => {
     event.preventDefault();
     setErrorMessage("");
 
-    const loggedIn = await isLoggedIn();
-    setIsAuthenticated(loggedIn);
-
     if (isAuthenticated) {
       setErrorMessage("Vous êtes déjà connecté.");
       return;
@@ -41,13 +38,13 @@ const Login = ({ setUser }) => {
       }
 
       const data = await response.json();
+      console.log("Informations utilisateur :", data.user);
+      console.log("Données renvoyées par le serveur :", data); // Ajouter cette ligne pour afficher les données renvoyées par le serveur
       // Stocker le jeton et les informations de l'utilisateur dans le stockage local
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data));
-      // Extraire les informations de l'utilisateur
-      const { message, token, ...user } = data;
+      localStorage.setItem("userData", JSON.stringify(data.user));
       // Mettre à jour l'état 'user' dans App.js
-      setUser(user);
+      setUser(data.user);
 
       alert("Connexion réussie!");
     } catch (error) {

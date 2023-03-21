@@ -1,23 +1,22 @@
-// components/Navbar.js
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { isLoggedIn } from "../utils/auth";
 import "./Navbar.css";
 
 const Navbar = ({ user }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   useEffect(() => {
     const checkAuthentication = async () => {
       const loggedIn = await isLoggedIn();
-      setIsAuthenticated(loggedIn);
+      if (!loggedIn) {
+        localStorage.removeItem("token");
+      }
     };
     checkAuthentication();
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsAuthenticated(false);
+    localStorage.removeItem("user");
   };
 
   return (
@@ -27,10 +26,12 @@ const Navbar = ({ user }) => {
           Home
         </Link>
         <ul className="custom-navbar-links">
-          {isAuthenticated ? (
+          {JSON.stringify(user) !== "{}" && (
             <>
               <li>
-                <div className="custom-nav-link">{user && user.email}</div>
+                <div className="custom-nav-link user-name">
+                  {user && user.username}
+                </div>
               </li>
               <li>
                 <button onClick={handleLogout} className="login-btn">
@@ -38,7 +39,8 @@ const Navbar = ({ user }) => {
                 </button>
               </li>
             </>
-          ) : (
+          )}
+          {JSON.stringify(user) === "{}" && (
             <>
               <li>
                 <Link to="/login" className="custom-nav-link">

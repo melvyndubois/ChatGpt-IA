@@ -2,7 +2,9 @@ import jwt_decode from "jwt-decode";
 
 export const isLoggedIn = async () => {
   const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
+  const userString = localStorage.getItem("user");
+  const user = JSON.parse(userString);
+
   console.log(localStorage);
 
   if (!token || !user) {
@@ -18,6 +20,7 @@ export const isLoggedIn = async () => {
       localStorage.removeItem("user");
       return false;
     }
+
     return true;
   } catch (error) {
     console.error("Error decoding token:", error);
